@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)http://oa.itools.cn/admin.php?m=me&a=checkin&start_date=2016-01-01&end_date=2016-01-31 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>创想天空OA管理系统</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./创想天空OA管理系统_files/bootstrap.min.css">
+<link rel="stylesheet" href="./创想天空OA管理系统_files/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="./创想天空OA管理系统_files/matrix-style.css">
+<link rel="stylesheet" href="./创想天空OA管理系统_files/matrix-media.css">
+<link href="./创想天空OA管理系统_files/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
+<link href="./创想天空OA管理系统_files/font-awesome.css" rel="stylesheet">
+<script type="text/javascript" src="./创想天空OA管理系统_files/jquery.min.js"></script>
+<script type="text/javascript">
+    //控制台
+    jQuery(function($){
+        $.datepicker.regional['zh-CN'] = {
+            clearText: '清除',
+            clearStatus: '清除已选日期',
+            closeText: '关闭',
+            closeStatus: '不改变当前选择',
+            prevText: '<上月',
+            prevStatus: '显示上月',
+            prevBigText: '<<',
+            prevBigStatus: '显示上一年',
+            nextText: '下月>',
+            nextStatus: '显示下月',
+            nextBigText: '>>',
+            nextBigStatus: '显示下一年',
+            currentText: '今天',
+            currentStatus: '显示本月',
+            monthNames: ['一月','二月','三月','四月','五月','六月', '七月','八月','九月','十月','十一月','十二月'],
+            monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],
+            monthStatus: '选择月份',
+            yearStatus: '选择年份',
+            weekHeader: '周',
+            weekStatus: '年内周次',
+            dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+            dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+            dayNamesMin: ['日','一','二','三','四','五','六'],
+            dayStatus: '设置 DD 为一周起始',
+            dateStatus: '选择 m月 d日, DD',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 1,
+            initStatus: '请选择日期',
+            isRTL: false};
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        $.timepicker.regional['zh-CN'] = {
+            timeOnlyTitle: '选择时间',
+            timeText: '时间',
+            hourText: '小时',
+            minuteText: '分钟',
+            secondText: '秒钟',
+            millisecText: '微秒',
+            timezoneText: '时区',
+            currentText: '现在时间',
+            closeText: '关闭',
+            timeFormat: 'HH:mm',
+            amNames: ['AM', 'A'],
+            pmNames: ['PM', 'P'],
+            isRTL: false
+        };
+        $.timepicker.setDefaults($.timepicker.regional['zh-CN']);
+    });
+
+// jQuery plugin to prevent double submission of forms
+jQuery.fn.preventDoubleSubmission = function() {
+  $(this).on('submit',function(e){
+    var $form = $(this);
+
+    if ($form.data('submitted') === true) {
+      // Previously submitted - don't submit again
+      e.preventDefault();
+    } else {
+      // Mark it so that the next submit can be ignored
+      $form.data('submitted', true);
+    }
+  });
+
+  // Keep chainability
+  return this;
+};
+</script>
+<style type="text/css">
+    .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+    .ui-timepicker-div dl { text-align: left; }
+    .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+    .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+    .ui-timepicker-div td { font-size: 90%; }
+    .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+    .ui-timepicker-rtl{ direction: rtl; }
+    .ui-timepicker-rtl dl { text-align: right; }
+    .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+
+</style>
+<style type="text/css"></style><link href="./创想天空OA管理系统_files/WdatePicker.css" rel="stylesheet" type="text/css"></head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="">创想天空OA系统</a></h1>
+</div>
+<!--close-Header-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav" style="width: auto; margin: 0px;">
+        <!--<li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">管理用户名</span><b class="caret"></b></a>-->
+        <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="#"><i class="icon-user"></i>用户信息修改</a></li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li><a href="#"><i class="icon-check"></i>广告位查看</a></li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li><a href="admin.php?m=index&a=login"><i class="icon-key"></i>退出系统</a></li>-->
+        <!--</ul>-->
+    <!--</li>-->
+
+    <li class=""><a href="http://oa.itools.cn/" title=""><i class="icon icon-user"></i><span class="text">alamisiwang</span></a></li>
+    <li class="dropdown" id="menu-messages"><a href="http://oa.itools.cn/admin.php?m=me&amp;a=messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">消息</span> 
+    <span class="label label-important" id="todo_num" style="display: none;">0</span> <!-- <b class="caret"></b> --></a>
+<!--         <ul class="dropdown-menu">
+            <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i>新增信息</a></li>
+            <li class="divider"></li>
+            <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i>所有信息</a></li>
+            <li class="divider"></li>
+            <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i>已删除信息</a></li>
+        </ul> -->
+    </li>
+
+    <li class=""><a title="" href="http://oa.itools.cn/admin.php?m=common&amp;a=logout&amp;redirect=1"><i class="icon icon-share-alt"></i> <span class="text">&nbsp;&nbsp;退出系统</span></a></li>
+    <li class=""><a title="" href="http://oa.itools.cn/admin.php?m=me&amp;a=change_pwd"><i class="icon icon-key"></i> <span class="text">&nbsp;&nbsp;修改密码</span></a></li>
+  </ul>
+</div>
+<!--close-top-Header-menu-->
+
+<!--start-top-serch-->
+<!-- <div id="search">
+    <input type="text" placeholder="搜索..."/>
+    <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+</div> -->
+<!--close-top-serch--><!--sidebar-menu-->
+<div id="sidebar">
+    <ul id="sidebar_ul" style="display: block;">
+        <li class="submenu"><a href="http://oa.itools.cn/admin.php"><i class="icon icon-home"></i><span>创想天空OA系统</span></a> </li>
+
+        <li class="active submenu"> 
+            <a href="http://oa.itools.cn/admin.php?m=me"><i class="icon icon-th-list"></i> <span>我的信息</span> </a>
+            <ul style="display: none;">
+                <li><a href="http://oa.itools.cn/admin.php?m=me">我的基本信息</a></li>
+                <li><a href="http://oa.itools.cn/admin.php?m=me&amp;a=leave">我的请假</a></li>
+                <li><a href="http://oa.itools.cn/admin.php?m=me&amp;a=todolist">待办事项</a></li>
+                <li><a href="http://oa.itools.cn/admin.php?m=me&amp;a=donelist">完成事项</a></li>
+                <li><a href="http://oa.itools.cn/admin.php?m=me&amp;a=checkin" style="background:#5785B1;color:#fff">我的考勤</a></li>
+            </ul>
+        </li>
+
+        <!-- 员工普通信息 -->
+         
+        <!-- 固定资产表 -->
+         
+         
+
+        <!-- 考勤管理 -->
+         
+      
+        <!-- 快递管理 -->
+         
+
+      <!-- 用户管理 -->
+      
+        <!--数据导入-->
+        
+    </ul>
+</div>
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb">
+            <a href="http://oa.itools.cn/admin.php" class="tip-bottom" data-original-title=""><i class="icon-home"></i>首页</a>
+            <a class="tip-bottom" data-original-title="">我的信息</a>
+            <a class="tip-bottom" data-original-title="">我的考勤</a>
+        </div>
+    </div>
+    <!--End-breadcrumbs-->
+    <script type="text/javascript">
+window.setTimeout(function(){$(".alert").remove()}, 5000);
+</script>    <div class="container-fluid">
+        <!--user manage-->
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="icon-th"></i></span>
+                <h5>我的考勤</h5>
+            </div>
+
+            <div class="widget-content nopadding">
+
+                <div class="container-fluid">
+                <form action="http://oa.itools.cn/admin.php" method="get" class="form-search" style="margin: 12px 0px;" role="search">
+                    <input type="hidden" name="m" value="me">
+                    <input type="hidden" name="a" value="checkin">
+                    <div class="form-group" style="display:inline-block; vertical-align: middle;">
+                        起始日期：<input type="text" name="start_date" class="form-control span2" placeholder="开始日期" value="2016-01-01" onclick="WdatePicker()" autocomplete="off">&nbsp;至&nbsp;
+                                <input type="text" name="end_date" class="form-control span2" placeholder="结束日期" value="2016-01-31" onclick="WdatePicker()" autocomplete="off">&nbsp;
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                </div>
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>姓名</th>
+                            <th>上班时间</th>
+                            <th>下班时间</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td>2016-01-22 (星期五)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:47</td>
+                            <td style="background-color:">19:43</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-21 (星期四)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:40</td>
+                            <td style="background-color:#FFDC8A">21:07</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-20 (星期三)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:41</td>
+                            <td style="background-color:#FFDC8A">21:09</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-19 (星期二)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:37</td>
+                            <td style="background-color:#FFDC8A">21:15</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-18 (星期一)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:">08:54</td>
+                            <td style="background-color:#FFDC8A">21:07</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-17 (星期天)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:">08:54</td>
+                            <td style="background-color:#FFDC8A">未打卡</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-14 (星期四)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:44</td>
+                            <td style="background-color:#FFDC8A"></td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-13 (星期三)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:43</td>
+                            <td style="background-color:#FFDC8A">21:11</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-12 (星期二)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:51</td>
+                            <td style="background-color:#FFDC8A">21:10</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-11 (星期一)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:">09:00</td>
+                            <td style="background-color:#FFDC8A">21:08</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-08 (星期五)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:52</td>
+                            <td style="background-color:">18:56</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-07 (星期四)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:55</td>
+                            <td style="background-color:#FFDC8A">21:14</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-06 (星期三)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:33</td>
+                            <td style="background-color:#FFDC8A">21:03</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-05 (星期二)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:#F5877F">09:26</td>
+                            <td style="background-color:#FFDC8A">21:09</td>
+                            <td></td>
+                        </tr>
+                                                <tr>
+                            <td>2016-01-04 (星期一)</td>
+                            <td>王阳明</td>
+                            <td style="background-color:">08:46</td>
+                            <td style="background-color:#FFDC8A">21:04</td>
+                            <td></td>
+                        </tr>
+                         
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--End-user manage-->
+        <div style="text-align:center;">
+            <div class="pagination alternate">
+  <ul>
+    <li><a href="javascript:void">总数:15</a></li>
+    
+        	    		<li class="active"> <a href="http://oa.itools.cn/admin.php?m=me&amp;start_date=2016-01-01&amp;end_date=2016-01-31&amp;a=checkin&amp;page=1">1</a> </li>
+    	    
+      </ul>
+</div>        </div>
+
+    </div>
+</div>
+<script src="./创想天空OA管理系统_files/WdatePicker.js"></script>
+<!--end-main-container-part-->
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12">Copyright © 2011-2016 ThinkSky. All Rights Reserved. 深圳市创想天空科技股份有限公司 版权所有 粤B2-20120722号 粤ICP备12048604号</div>
+</div>
+<!--end-Footer-part-->
+
+<script type="text/javascript" src="./创想天空OA管理系统_files/jquery.uniform.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/IM_validate.js"></script>
+<script src="./创想天空OA管理系统_files/matrix.form_common.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/IM_validate.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/bootstrap.min.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/matrix.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/jquery.validate.js"></script>
+<script type="text/javascript" src="./创想天空OA管理系统_files/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript">
+    function checkNum() 
+    {
+        $.get('admin.php?m=me&a=checkNum', '', function(data){
+            if (data > 0) {
+                $("#todo_num").html(data);
+                $("#todo_num").show();
+            } else {
+                $("#todo_num").hide();
+            }
+        });
+    }
+
+    $(function(){
+        checkNum();
+    });
+
+    setInterval(function(){
+        checkNum();
+    }, 30000);    
+</script>
+
+
+<div id="_my97DP" style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 186px; height: 198px;" src="./创想天空OA管理系统_files/My97DatePicker.html" frameborder="0" border="0" scrolling="no" __idm_frm__="27"></iframe></div></body><div></div><div></div></html>
